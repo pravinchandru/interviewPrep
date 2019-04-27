@@ -1,0 +1,31 @@
+#MatrixProblems.make
+# example make file for use
+
+# Flags for  run
+CC=g++
+CXXFLAGS=-Wall
+
+# first name a variable objects for all object files
+objects = MatrixProblems.o
+
+
+# name a variable sources for all source files
+sources = MatrixProblems.cpp 
+
+# now give targetname with objects as variables dependencies + commandline
+
+MatrixProblems: $(objects) 
+	$(CC) $(CXXFLAGS) -o MatrixProblems $(objects)
+
+# list the dependencies for object files - those header files which help build objects
+
+MatrixProblems.o: MatrixProblems.h 
+
+# how to build all object files from all dependent source files
+
+
+$(objects): $(sources)
+	 $(CC) $(CXXFLAGS) $(sources)
+
+clean:
+	rm $(objects) MatrixProblems

@@ -1,0 +1,53 @@
+1) How cookies works?
+2) How Browser call works?
+3) How multithreading works? (Deadlock, )
+4) How https works?
+
+  HTTPS = HTTP + SSL
+  When "https://" url is hit on the browser. Here is the sequence of events:
+  1. A TCP connection is established between browser and server(port :443).
+  2. SSL handshake happens.
+      2.1 Broswer sends "CLIENT HELLO" message to server. This msg contains:
+          - Compression methods supported, Cipher /Encryption algo used.
+      2.2 Server responds with "SERVER HELLO" message.
+          - SSL version used, Compression methods supported, Cipher /Encryption
+          algo used, Session ID for SSl session.
+      2.3 Server sends Digital Certificate signed by a verified authority like
+         "Verisign" . It server 2 purposes.
+          - It contains public key of server.
+          - It establishes the identity of the service/server.
+      2.4 Server sends "SERVER HELLO DONE" message.
+      2.5 Client sends "CERTIFICATE VERIFY" message
+      2.6 Client sends "CHANGE CIPHER SPEC" command to indicate from now on it
+         will send messages encrypted by servers' public key.
+      2.7 Client sends "FINISHED" message which is the digest of all messages
+         exchanged so far encrypted by server public key. (so that server can
+         verify the order of messages to ensure no tampering has hppnd in b/w)
+      2.8 Server sends "CHANGE CIPHER SPEC" command to indicate from now on it
+         will send messages encrypted by servers' public key.
+      2.9 Server sends "FINISHED" message which is the digest of all messages
+         exchanged so far with client.
+      2.10 SSL Handshake complete.
+  3. Client generates a symmetric key to be used for communication for that SSL
+     session. It encrypts it with servers' public key.
+  4. Server decrypts the "symmetric" key using its private key.
+  5. All Message exchange is encrypted and decrypted by this symmetric key.
+
+
+
+
+
+
+5) Difference between Symmetric and Asymmetric cryptography
+
+  Symmetric encryption : Same key is used for encryption and decryption
+
+  Take a Text and encrypt it with an encryption algorithm using a random string
+  (key). Receiver can decrypt the message with same decryption algorithm with
+  the same key.
+
+  Asymmetric encryption : Different keys are used for encryption and decryption.
+
+
+5) Diamond problem
+6)

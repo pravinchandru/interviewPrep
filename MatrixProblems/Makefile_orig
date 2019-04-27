@@ -1,0 +1,20 @@
+CC=g++
+CFLAGS=-c -Wall
+LDFLAGS=
+SOURCES=MatrixProblems.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=MatrixProblems
+
+-include $(OBJECTS:.o=.d)
+
+all: $(SOURCES) $(EXECUTABLE)
+	
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+	$(CC) -MM $(CFLAGS) $< -d $@
+	
+clean:
+	rm -rf *o MatrixProblems
