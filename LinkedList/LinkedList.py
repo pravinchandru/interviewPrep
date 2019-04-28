@@ -160,9 +160,4 @@ loop2.nextNode = loop1
 
 #print(compare(list.headval, list2.headval))
 
-# copyList = SLinkedList()
-# copyList.headval = copyLL(list.headval)
-# mid = middleLinkedList( list2.headval )
-# print(mid.dataval)
-
 print(isPalindrome(list2.headval))
