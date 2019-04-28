@@ -3,6 +3,31 @@ class Node:
         self.dataval = dataval
         self.nextNode = nextNode
 
+def reverseNode(node):
+    if(node.nextNode):
+        self.reverseNode(node.nextNode)
+        node.nextNode.nextNode = node
+    else:
+        self.headval = node
+    return node
+
+def reverse(node):
+    temp = reverseNode(node)
+    temp.nextNode = None
+    return temp
+
+def middleLinkedList(node):
+    if(not node):
+        return None
+    elif(not node.nextNode):
+        return node
+    else:
+        node1=node.nextNode
+        while(node1):
+            node = node.nextNode
+            node1 = node.nextNode.nextNode
+        return node
+
 def detectLoop(head):
     node = head
     if(not node):
@@ -25,6 +50,20 @@ def compare(node1, node2):
         return False
     else:
         return compare(node1.nextNode, node2.nextNode)
+
+
+def isPalindrome(node):
+    if (not node):
+        return False
+    elif (not node.nextNode):
+        return True
+    else:
+        newList = SLinkedList()
+        newList.headval = copyLL(node)
+        newList.reverse()
+        return compare(node, newList.headval)
+
+
 
 
 def copyLL(node):
@@ -82,17 +121,8 @@ class SLinkedList:
                 newNode = nextNode
 
     def middleLinkedList(self):
-        node = self.headval
-        if(not node):
-            return None
-        elif(not node.nextNode):
-            return node
-        else:
-            node1=node.nextNode
-            while(node1):
-                node = node.nextNode
-                node1 = node.nextNode.nextNode
-            return node
+        return middleLinkedList(self.headval)
+
 
     def detectLoop(self):
         return detectLoop(self.headval)
@@ -110,8 +140,8 @@ e2 = Node(2, e3)
 list.headval = Node(1, e2)
 
 list2 = SLinkedList()
-e4 = Node(8, None)
-e3 = Node(7, e4 )
+
+e3 = Node(7, None )
 e2 = Node(6, e3)
 list2.headval = Node(5, e2)
 
@@ -130,5 +160,9 @@ loop2.nextNode = loop1
 
 #print(compare(list.headval, list2.headval))
 
-copyList = SLinkedList()
-copyList.headval = copyLL(list.headval)
+# copyList = SLinkedList()
+# copyList.headval = copyLL(list.headval)
+# mid = middleLinkedList( list2.headval )
+# print(mid.dataval)
+
+print(isPalindrome(list2.headval))
