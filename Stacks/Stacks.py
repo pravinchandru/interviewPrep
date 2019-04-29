@@ -1,3 +1,36 @@
+
+def evalRPNExpressions(expression):
+	dlimiter = ','
+	operators = {
+		'+'	:	lambda x, y : x + y,
+		'-'	:	lambda x, y : x - y,
+		'*'	:	lambda x, y : x * y,	
+		'/'	:	lambda x, y : x / y	
+	}
+	s = []
+	for token in expression.split(dlimiter):
+		if token in operators:
+			s.append(operators[token](s.pop(),s.pop()))
+		else:
+			s.append(token)
+	return s[-1]		
+				
+def wellFormedness(expression):
+	matchMap = {
+	 	'{' : '}',
+	 	'[' : ']',
+	 	'(' : ')'
+	}
+
+	s = []
+	for i in expression:
+		if (s and i == matchMap[s[-1]]):
+			s.pop()
+		else:
+			s.append(i)
+	return not s		
+
+
 class Stack:
     def __init__(self):
         self.items = []
@@ -42,6 +75,9 @@ class Stack:
     	else:
     		return self.minItems[-1]		
 
+
+
+
 s = Stack()
 s.push(6)
 s.push(5)
@@ -56,5 +92,7 @@ s.pop()
 s.print()
 print(s.max())
 print(s.min())
+
+print(wellFormedness("{[]}())"))
 
 
