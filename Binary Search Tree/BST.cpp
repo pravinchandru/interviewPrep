@@ -249,7 +249,7 @@ void BST::addNode(Node* node, int data) {
             Node* temp= new Node();
             temp->SetData(data);
             temp->SetLeft(nullptr);
-            temp->SetRight(nullptr);
+            temp->SetRight(nullptr);    
             node->SetLeft(temp);
         }
     } else {

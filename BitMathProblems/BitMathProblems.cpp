@@ -132,7 +132,7 @@ bool BitMathProblems::isPrimeNumber(int num)
 
  Input: n = 1
  Output:p = 11
- // Note that 1*1 = 1
+ 
 
  Input: n = 13
  Output: Not Possible
