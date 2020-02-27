@@ -191,7 +191,36 @@ class BitMathProblems:
 					num //= i
 			if (num == number or BitMathProblems.is_prime(num)):
 				return -1		
-		return res 			
+		return res 
+
+	def sqrt(val):
+		start , end = 0, val/2
+		while(start < end):
+			mid = (start + end) / 2
+			if (mid * mid == val):
+				return mid
+			elif (mid * mid > val):
+				end = mid
+			else: 
+				start = mid
+		return -1				
+
+	def maxArea( A): 
+	    l = 0
+	    r = len(A) -1
+	    area = 0
+	      
+	    while l < r: 
+	        # Calculating the max area 
+	        area = max(area, min(A[l],  
+	                        A[r]) * (r - l)) 
+	      
+	        if A[l] < A[r]: 
+	            l += 1
+	        else: 
+	            r -= 1
+	    return area	
+								
 
 
 
@@ -226,3 +255,5 @@ class BitMathProblems:
 #print(BitMathProblems.prime_factors(68))
 #print(BitMathProblems.is_prime(9))
 #print(BitMathProblems.lowest_product_digits(100))
+
+print(BitMathProblems.maxArea([1,8,6,2,5,4,8,3,7]))
